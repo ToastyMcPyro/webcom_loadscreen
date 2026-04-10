@@ -1,4 +1,4 @@
-# WebCom Loadscreen
+# webcom loadscreen
 
 `webcom_loadscreen` provides an in-game loadscreen editor, deployable designs, media management, and optional ArgusAdmin/httpmanager integration.
 
