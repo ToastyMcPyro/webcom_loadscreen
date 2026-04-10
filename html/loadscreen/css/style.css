@@ -1,0 +1,386 @@
+/* ═══════════════════════════════════════════════════════════
+   Loadscreen Base Styles
+   ═══════════════════════════════════════════════════════════ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #0a0a0a;
+    font-family: 'Inter', sans-serif;
+}
+
+#loadscreen-canvas {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* ─── Fallback Screen ─────────────────────────────────── */
+
+#fallback-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    background: #0a0a0a;
+    z-index: 99999;
+}
+
+#fallback-screen.hidden {
+    display: none;
+}
+
+.fallback-spinner {
+    width: 48px;
+    height: 48px;
+    border: 4px solid rgba(255,255,255,0.1);
+    border-top-color: #6366f1;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.fallback-text {
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 500;
+    opacity: 0.8;
+}
+
+.fallback-progress {
+    width: 300px;
+    height: 4px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.fallback-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: #6366f1;
+    border-radius: 2px;
+    transition: width 0.3s ease;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ─── Element Base ────────────────────────────────────── */
+
+.ls-element {
+    position: absolute;
+    transition: opacity 0.3s ease;
+}
+
+.ls-element img,
+.ls-element video {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+/* ─── Animation Keyframes ─────────────────────────────── */
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to   { opacity: 0; }
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to   { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes slideInTop {
+    from { transform: translateY(-100%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInBottom {
+    from { transform: translateY(100%); opacity: 0; }
+    to   { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.5); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+@keyframes zoomOut {
+    from { transform: scale(1.5); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+    40%  { transform: translateY(-20px); }
+    60%  { transform: translateY(-10px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50%      { transform: scale(1.05); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-4px); }
+    20%, 40%, 60%, 80% { transform: translateX(4px); }
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+@keyframes flip {
+    from { transform: perspective(400px) rotateY(90deg); opacity: 0; }
+    to   { transform: perspective(400px) rotateY(0deg); opacity: 1; }
+}
+
+@keyframes swing {
+    20%  { transform: rotate(15deg); }
+    40%  { transform: rotate(-10deg); }
+    60%  { transform: rotate(5deg); }
+    80%  { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes rubberBand {
+    0%   { transform: scale(1); }
+    30%  { transform: scaleX(1.25) scaleY(0.75); }
+    40%  { transform: scaleX(0.75) scaleY(1.25); }
+    50%  { transform: scaleX(1.15) scaleY(0.85); }
+    65%  { transform: scaleX(0.95) scaleY(1.05); }
+    75%  { transform: scaleX(1.05) scaleY(0.95); }
+    100% { transform: scale(1); }
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50%      { transform: translateY(-10px); }
+}
+
+@keyframes glowPulse {
+    0%, 100% { filter: brightness(1); }
+    50%      { filter: brightness(1.3); }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+}
+
+/* ─── Ticker / Scrolling Text ─────────────────────────── */
+
+.ticker-wrapper {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.ticker-content {
+    display: inline-block;
+    animation: ticker linear infinite;
+}
+
+@keyframes ticker {
+    0%   { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* ─── Progress Bar Styles ─────────────────────────────── */
+
+.ls-progress-track {
+    width: 100%;
+    height: 100%;
+    border-radius: inherit;
+    overflow: hidden;
+}
+
+.ls-progress-fill {
+    height: 100%;
+    border-radius: inherit;
+    transition: width 0.5s ease;
+}
+
+.ls-progress-fill.animated {
+    background-image: linear-gradient(
+        45deg,
+        rgba(255,255,255,0.15) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255,255,255,0.15) 50%,
+        rgba(255,255,255,0.15) 75%,
+        transparent 75%,
+        transparent
+    );
+    background-size: 40px 40px;
+    animation: progressStripe 1s linear infinite;
+}
+
+@keyframes progressStripe {
+    0%   { background-position: 40px 0; }
+    100% { background-position: 0 0; }
+}
+
+/* ─── Spinner ─────────────────────────────────────────── */
+
+.ls-spinner {
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+/* ─── Circular Progress ───────────────────────────────── */
+
+.ls-circular-progress {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ls-circular-progress svg {
+    transform: rotate(-90deg);
+}
+
+.ls-circular-progress .percent-text {
+    position: absolute;
+}
+
+/* ─── Loading Dots ────────────────────────────────────── */
+
+.ls-loading-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--dot-gap, 8px);
+}
+
+.ls-loading-dots .dot {
+    border-radius: 50%;
+    animation: dotPulse 1.4s ease-in-out infinite;
+}
+
+.ls-loading-dots .dot:nth-child(2) { animation-delay: 0.2s; }
+.ls-loading-dots .dot:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes dotPulse {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.5; }
+    40%           { transform: scale(1); opacity: 1; }
+}
+
+/* ─── Skeleton Loader ─────────────────────────────────── */
+
+.ls-skeleton {
+    animation: shimmer 2s infinite;
+    background-size: 200% 100%;
+}
+
+@keyframes shimmer {
+    0%   { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ─── Pulse Loader ────────────────────────────────────── */
+
+.ls-pulse {
+    border-radius: 50%;
+    animation: pulseScale 1.5s ease-in-out infinite;
+}
+
+@keyframes pulseScale {
+    0%        { transform: scale(0); opacity: 1; }
+    100%      { transform: scale(1); opacity: 0; }
+}
+
+/* ─── Typewriter ──────────────────────────────────────── */
+
+.typewriter-cursor {
+    display: inline-block;
+    animation: cursorBlink 1s step-end infinite;
+}
+
+@keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0; }
+}
+
+/* ─── Scanlines Effect ────────────────────────────────── */
+
+.ls-scanlines {
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent var(--line-spacing, 3px),
+        var(--line-color, rgba(0,0,0,0.15)) var(--line-spacing, 3px),
+        var(--line-color, rgba(0,0,0,0.15)) calc(var(--line-spacing, 3px) + var(--line-width, 1px))
+    );
+}
+
+/* ─── Snowfall / Rainfall / Particles container ───────── */
+
+.ls-effect-canvas {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* ─── Music Player ────────────────────────────────────── */
+
+.ls-music-player {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 16px;
+    border-radius: 12px;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(10px);
+}
+
+.ls-music-player .track-name {
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* ─── Neon Border Animation ───────────────────────────── */
+
+.ls-neon-border.animated {
+    animation: neonPulse 2s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+    0%, 100% { box-shadow: 0 0 var(--neon-size, 3px) var(--neon-color, #6366f1),
+                            0 0 calc(var(--neon-size, 3px) * 2) var(--neon-color, #6366f1); }
+    50%      { box-shadow: 0 0 calc(var(--neon-size, 3px) * 2) var(--neon-color, #6366f1),
+                            0 0 calc(var(--neon-size, 3px) * 4) var(--neon-color, #6366f1); }
+}
